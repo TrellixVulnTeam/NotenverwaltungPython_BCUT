@@ -37,24 +37,29 @@ def getPromotionsstatus():
             minusPunkte += ((4 - durchschnitt) *2)
         else:
             plusPunkte += - ((4 - durchschnitt))
-    print("Pluspunkte: " + str(plusPunkte))
-    print("Minuspunkte: " + str(minusPunkte))
+    print("   Pluspunkte: " + str(plusPunkte))
+    print("   Minuspunkte: " + str(minusPunkte))
     return minusPunkte < plusPunkte
 
 def printPromotionsstatus():
-    promstatus = ""
+    print("  ==================")
+    print("|| Promotionsstatus ||")
+    print("  ==================")
     if getPromotionsstatus():
         promstatus = "Bestanden"
     else:
         promstatus = "Promotion gefaehrdet (PG)"
-    print("Promotionsstatus: " + promstatus + "\n")
+    print("   Promotion: " + promstatus + "\n\n")
 
 def printDurchschnitte():
+    print("  =============================")
+    print("|| Durchschnitte aller Faecher ||")
+    print("  =============================")
     for fach in File.getFaecher():
-        print(fach)
-        print("-------------")
-        print("Durchschnitt: " + str(getDurchschnitt(File.getNotenByFach(fach), File.getGewichtungenByFach(fach))))
-        print("Gerundet: " + str(getDurchschnittGerundet(File.getNotenByFach(fach), File.getGewichtungenByFach(fach))))
+        print("   " + fach)
+        print("   -------------")
+        print("   Durchschnitt: " + str(getDurchschnitt(File.getNotenByFach(fach), File.getGewichtungenByFach(fach))))
+        print("   Gerundet: " + str(getDurchschnittGerundet(File.getNotenByFach(fach), File.getGewichtungenByFach(fach))))
         print("\n")
 
 def printNoten(noten, gewichtungen):
@@ -70,13 +75,14 @@ def programmSchleife():
         starteFunktion(eingabe)
 
 def printMenu():
-    print("Notenverwaltung")
-    print("-------------------------------")
-    print("(F) Fach wählen")
-    print("(P) Promotionsstatus berechnen")
-    print("(H) Note hinzufuegen")
-    print("(L) Note loeschen")
-    print("(Q) Programm beenden")
+    print("  ========================")
+    print("|| Notenverwaltung - Menu ||")
+    print("  ========================")
+    print("   (F) Fach wählen")
+    print("   (P) Promotionsstatus berechnen")
+    print("   (H) Note hinzufuegen")
+    print("   (L) Note loeschen")
+    print("   (Q) Programm beenden")
 
 def starteFunktion(eingabe):
     if (eingabe == "F") or (eingabe == "f"):
@@ -88,7 +94,7 @@ def starteFunktion(eingabe):
     elif (eingabe == "L") or (eingabe == "l"):
         noteLoeschen()
     elif (eingabe == "Q") or (eingabe == "q"):
-        print("Programm wird beendet...")
+        print("\nProgramm wird beendet...")
         sys.exit()
     else:
         print("Eingabe war nicht gültig!\n")
@@ -98,7 +104,7 @@ def printFachMenu():
         #clear()
         gewaehltesFach = -2
         print("Alle Faecher")
-        print("-------------------------------")
+        print("=============")
         counter = 1
         for fach in File.getFaecher():
             print("(" + str(counter) + ") " + fach)
@@ -160,6 +166,7 @@ def noteLoeschen():
     print("------------------")
     File.deleteNote(File.printNoten())
 
+clear()
 printDurchschnitte()
 printPromotionsstatus()
 programmSchleife()
