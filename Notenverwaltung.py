@@ -46,9 +46,9 @@ def printPromotionsstatus():
     print("|| Promotionsstatus ||")
     print("  ==================")
     if getPromotionsstatus():
-        promstatus = "Bestanden"
+        promstatus = "geschafft"
     else:
-        promstatus = "Promotion gefaehrdet (PG)"
+        promstatus = "gefährdet (PG)"
     print("   Promotion: " + promstatus + "\n\n")
 
 def printDurchschnitte():
@@ -80,11 +80,12 @@ def printMenu():
     print("  ========================")
     print("   (F) Fach wählen")
     print("   (P) Promotionsstatus berechnen")
-    print("   (H) Note hinzufuegen")
-    print("   (L) Note loeschen")
+    print("   (H) Note hinzufügen")
+    print("   (L) Note löschen")
     print("   (Q) Programm beenden")
 
 def starteFunktion(eingabe):
+    clear()
     if (eingabe == "F") or (eingabe == "f"):
         printFachMenu()
     elif (eingabe == "P") or (eingabe == "p"):
@@ -111,7 +112,7 @@ def printFachMenu():
             counter += 1
         print("(-1) Zurück")
 
-        gewaehltesFach = int(input("Waehlen Sie ein Fach: "))
+        gewaehltesFach = int(input("Wählen Sie ein Fach: "))
         if(gewaehltesFach == -1):
             break
         starteFachFunktion(gewaehltesFach)
@@ -121,11 +122,12 @@ def printFachFunktionsMenu():
     print("(D) Durchschnitt ausgeben")
     print("(N) Noten anzeigen")
     print("(H) Note hinzufügen")
-    print("(Z) Zurueck")
+    print("(Z) Zurück")
     return input("\nWas möchten Sie tun? ")
 
 
 def starteFachFunktion(fachIndex):
+    clear()
     if not fachIndex == -1:
         while(True):
             if fachIndex > 0:
@@ -151,8 +153,9 @@ def starteFachFunktion(fachIndex):
                 printFachFunktionsMenu()
 
 def noteHinzufuegen(fach):
+    clear()
     if not fach == "geheZurueck":
-        print("Note hinzufuegen")
+        print("Note hinzufügen")
         print("------------------")
         note = input("Note: ")
         if fach == "keinFachGewaehlt":
@@ -162,7 +165,8 @@ def noteHinzufuegen(fach):
         File.addNote(note, fach, datum, gewichtung)
 
 def noteLoeschen():
-    print("Note loeschen")
+    clear()
+    print("Note löschen")
     print("------------------")
     File.deleteNote(File.printNoten())
 

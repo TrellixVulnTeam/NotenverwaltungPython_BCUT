@@ -57,7 +57,7 @@ def printFaecher():
     print("(-1) Zurück")
     print("(-2) Eigenes Fach")
 
-    wahl = int(input("Waehlen Sie ein Fach aus: "))
+    wahl = int(input("Wählen Sie ein Fach aus: "))
     if wahl > 0:
         return faecher[wahl-1]
     elif wahl == -2:
@@ -73,40 +73,35 @@ def printNoten():
             # Ein Eintrag enthält: Note, Fach, Datum, Gewichtung
             print(str(counter) + ") " + zeile[1] + ": "+ zeile[0] + " - " + zeile[2] + " [Gewichtung]: " + zeile[3])
             counter += 1
-    return input("Waehlen Sie eine Note zum löschen aus: ")
+        print("(-1) Zurück")
+    return input("Wählen Sie eine Note zum Löschen aus: ")
 
 def deleteNote(index):
-    # zeilenZumBehalten = ""
-    index = int(index)
-    os.rename(dateipfad, dateipfad+"_old")
-    input = open(dateipfad + "_old", "r")
-    output = open(dateipfad, "a")
-    reader = csv.reader(input)
-    counter = 1
-    for row in reader:
-        eintrag = ""
-        for col in row:
-            if not col == row[len(row)-1]:
-                eintrag += str(col) + ";"
-            else:
-                eintrag += str(col)
-        if not counter == index:
-           output.write(eintrag+"\n")
-        counter += 1
-    input.close()
-    output.close()
-    os.remove(dateipfad+"_old")
-    # with open(dateipfad, newline='') as datei:
-    #     reader = csv.reader(datei, delimiter=";")
-    #     zeilenCounter = 1
-    #     for zeile in reader:
-    #         if not zeilenCounter == index:
-    #             zeilenZumBehalten += str(zeile)
-    # with open(dateipfad, "wb") as datei:
-    #     writer = csv.writer(datei)
-    #     for zeile in zeilenZumBehalten:
-    #         writer.writerow(zeile)
-    print("Note erfolgreich gelöscht!")
+    if not index == -1:
+        # zeilenZumBehalten = ""
+        index = int(index)
+        os.rename(dateipfad, dateipfad+"_old")
+        input = open(dateipfad + "_old", "r")
+        output = open(dateipfad, "a")
+        reader = csv.reader(input)
+        counter = 1
+        for row in reader:
+            eintrag = ""
+            for col in row:
+                if not col == row[len(row)-1]:
+                    eintrag += str(col) + ";"
+                else:
+                    eintrag += str(col)
+            if not counter == index:
+               output.write(eintrag+"\n")
+            counter += 1
+        input.close()
+        output.close()
+        os.remove(dateipfad+"_old")
+        print("Note erfolgreich gelöscht!")
+    else:
+        print("keine Note gelöscht...")
+
 
 def addNote(note, fach, datum, gewichtung):
     with open(dateipfad, "a", newline='') as datei:
