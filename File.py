@@ -77,7 +77,7 @@ def printNoten():
     return input("Wählen Sie eine Note zum Löschen aus: ")
 
 def deleteNote(index):
-    if not index == -1:
+    if not index == -1 and not index == "-1":
         # zeilenZumBehalten = ""
         index = int(index)
         os.rename(dateipfad, dateipfad+"_old")
