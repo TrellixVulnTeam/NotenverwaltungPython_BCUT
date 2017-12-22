@@ -39,7 +39,7 @@ def getPromotionsstatus():
             plusPunkte += - ((4 - durchschnitt))
     print("   Pluspunkte: " + str(plusPunkte))
     print("   Minuspunkte: " + str(minusPunkte))
-    return minusPunkte < plusPunkte
+    return minusPunkte <= plusPunkte
 
 def printPromotionsstatus():
     print("  ==================")
@@ -133,7 +133,7 @@ def starteFachFunktion(fachIndex):
             if fachIndex > 0:
                 gewaehltesFach = File.getFaecher()[fachIndex - 1]
                 #clear()
-                print(gewaehltesFach)
+                print("\n" + gewaehltesFach)
                 print("-----------------")
                 funktion = printFachFunktionsMenu()
                 if (funktion == "D") or (funktion == "d"):
